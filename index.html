@@ -277,19 +277,19 @@
     .desktop-only { display: none; }
     .mobile-only { display: block; }
     .wrap { padding: 0 22px; }
-    /* hero fills the screen; stats reveal on swipe */
+    /* hero fills the screen, content centered with comfortable spacing */
     .hero {
       padding: 36px 0 24px;
-      min-height: calc(90vh - 66px);
-      display: flex; flex-direction: column; justify-content: flex-start;
+      min-height: calc(100vh - 66px);
+      display: flex; flex-direction: column; justify-content: center;
     }
-    .hero .tag { margin-top: 8px; }
+    .hero .tag { margin-bottom: 20px; line-height: 1.5; }
+    h1 { font-size: clamp(1.9rem, 8.5vw, 2.5rem); line-height: 1.15; margin-bottom: 18px; }
+    h1 .title-role { display: inline-block; font-size: 0.62em; font-weight: 600; margin-top: 10px; letter-spacing: 0; }
+    .hero p.sub { font-size: 0.96rem; line-height: 1.7; margin-bottom: 32px; }
     .stats { grid-template-columns: repeat(2, 1fr); }
     .grid, .proof-grid { grid-template-columns: 1fr; }
     .role { grid-template-columns: 1fr; gap: 8px; }
-    .hero { padding: 44px 0 40px; }
-    h1 { font-size: clamp(1.9rem, 8.5vw, 2.5rem); line-height: 1.1; margin-bottom: 16px; }
-    h1 .title-role { display: inline-block; font-size: 0.62em; font-weight: 600; margin-top: 6px; letter-spacing: 0; }
     .hero p.lead { font-size: 1.05rem; line-height: 1.5; margin-bottom: 14px; }
     .hero p.sub { font-size: 0.92rem; line-height: 1.5; margin-bottom: 28px; }
     .hero .tag { font-size: 0.72rem; margin-bottom: 16px; }
