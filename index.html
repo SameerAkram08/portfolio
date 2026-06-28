@@ -279,10 +279,11 @@
     .wrap { padding: 0 22px; }
     /* hero fills the screen; stats reveal on swipe */
     .hero {
-      padding: 28px 0 24px;
-      min-height: calc(94vh - 66px);
-      display: flex; flex-direction: column; justify-content: center;
+      padding: 36px 0 24px;
+      min-height: calc(90vh - 66px);
+      display: flex; flex-direction: column; justify-content: flex-start;
     }
+    .hero .tag { margin-top: 8px; }
     .stats { grid-template-columns: repeat(2, 1fr); }
     .grid, .proof-grid { grid-template-columns: 1fr; }
     .role { grid-template-columns: 1fr; gap: 8px; }
@@ -301,7 +302,7 @@
     h2 { font-size: 1.45rem; }
     .section-note { font-size: 0.95rem; }
   }
-  @media (max-width: 400px) {
+  @media (max-width: 480px) {
     .wrap { padding: 0 18px; }
     h1 { font-size: 1.85rem; }
     .cta-row { flex-direction: column; }
