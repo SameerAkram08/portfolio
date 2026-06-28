@@ -61,6 +61,8 @@
     overflow-x: hidden;
   }
   .mono { font-family: 'JetBrains Mono', monospace; }
+  .desktop-only { display: block; }
+  .mobile-only { display: none; }
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
   a { color: inherit; }
 
@@ -92,10 +94,44 @@
     padding: 8px 16px; border-radius: 7px;
   }
   .nav-links a.nav-cta:hover { background: var(--signal); color: var(--ink); }
-  .nav-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 6px; }
+  .nav-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 6px; z-index: 210; position: relative; }
+  .mobile-menu { display: none; }
+  .menu-overlay { display: none; }
   @media (max-width: 680px) {
     .nav-links { display: none; }
     .nav-toggle { display: block; }
+
+    /* dark overlay behind the panel */
+    .menu-overlay {
+      display: block; position: fixed; inset: 0; z-index: 150;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+      -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+    }
+    .menu-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* slide-in panel from the right */
+    .mobile-menu {
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; right: 0; z-index: 160;
+      width: 72%; max-width: 300px; height: 100vh;
+      background: #11161d;
+      border-left: 1px solid var(--line);
+      padding: 88px 0 24px;
+      transform: translateX(100%);
+      transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -12px 0 40px rgba(0, 0, 0, 0.5);
+    }
+    .mobile-menu[hidden] { display: flex; }   /* keep in DOM for animation */
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu a {
+      padding: 16px 28px; text-decoration: none; color: var(--text);
+      font-size: 1.02rem; border-bottom: 1px solid var(--line);
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .mobile-menu a:last-child { color: var(--signal); font-family: 'JetBrains Mono', monospace; }
+    .mobile-menu a:active { background: var(--panel); }
   }
 
   /* ---------- reveal animation ---------- */
@@ -238,11 +274,38 @@
   :focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; border-radius: 4px; }
 
   @media (max-width: 680px) {
+    .desktop-only { display: none; }
+    .mobile-only { display: block; }
+    .wrap { padding: 0 22px; }
+    /* hero fills the screen; stats reveal on swipe */
+    .hero {
+      padding: 28px 0 24px;
+      min-height: calc(94vh - 66px);
+      display: flex; flex-direction: column; justify-content: center;
+    }
     .stats { grid-template-columns: repeat(2, 1fr); }
     .grid, .proof-grid { grid-template-columns: 1fr; }
     .role { grid-template-columns: 1fr; gap: 8px; }
-    .hero { padding: 64px 0 52px; }
+    .hero { padding: 44px 0 40px; }
+    h1 { font-size: clamp(1.9rem, 8.5vw, 2.5rem); line-height: 1.1; margin-bottom: 16px; }
+    h1 .title-role { display: inline-block; font-size: 0.62em; font-weight: 600; margin-top: 6px; letter-spacing: 0; }
+    .hero p.lead { font-size: 1.05rem; line-height: 1.5; margin-bottom: 14px; }
+    .hero p.sub { font-size: 0.92rem; line-height: 1.5; margin-bottom: 28px; }
+    .hero .tag { font-size: 0.72rem; margin-bottom: 16px; }
     .contact-box { padding: 32px 20px; }
+    .cta-row { gap: 10px; }
+    .cta-row .btn { flex: 1 1 auto; text-align: center; }
+    .stat { padding: 20px 16px; }
+    .stat .n { font-size: 1.45rem; }
+    section { padding: 52px 0; }
+    h2 { font-size: 1.45rem; }
+    .section-note { font-size: 0.95rem; }
+  }
+  @media (max-width: 400px) {
+    .wrap { padding: 0 18px; }
+    h1 { font-size: 1.85rem; }
+    .cta-row { flex-direction: column; }
+    .cta-row .btn { width: 100%; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
@@ -263,9 +326,17 @@
       <a href="#stack">Stack</a>
       <a href="#contact" class="nav-cta">Get in touch</a>
     </div>
-    <button class="nav-toggle" aria-label="Jump to contact" onclick="document.getElementById('contact').scrollIntoView()">
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
+  </div>
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#capabilities">Capabilities</a>
+    <a href="#experience">Experience</a>
+    <a href="#work">Work</a>
+    <a href="#stack">Stack</a>
+    <a href="#contact">Get in touch</a>
   </div>
 </nav>
 
@@ -273,9 +344,10 @@
   <canvas id="net-bg" aria-hidden="true"></canvas>
   <div class="wrap hero">
     <div class="tag mono"><span class="dot">●</span> available for remote roles, US / UK / international</div>
-    <h1>Sameer Akram<br /><span class="accent">IT Support Engineer</span></h1>
-    <p class="lead">I keep distributed teams running by administering their Microsoft cloud, securing their identities, and resolving issues fast and reliably.</p>
-    <p class="sub">Specialist in <strong>Microsoft 365</strong> and <strong>Entra ID</strong> administration, with 3 years supporting US-based and international teams remotely.</p>
+    <h1>Sameer Akram<br /><span class="accent title-role">IT Support Engineer</span></h1>
+    <p class="lead desktop-only">I keep distributed teams running by administering their Microsoft cloud, securing identities, and resolving issues fast.</p>
+    <p class="sub desktop-only">Specialist in <strong>Microsoft 365</strong> and <strong>Entra ID</strong> administration, with 3 years supporting US-based and international teams remotely.</p>
+    <p class="sub mobile-only">Microsoft 365 &amp; <strong>Entra ID</strong> specialist keeping distributed teams running. 3 years supporting US &amp; international teams remotely.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#contact">Get in touch</a>
       <a class="btn btn-ghost" href="https://github.com/SameerAkram08" target="_blank" rel="noopener">View GitHub</a>
@@ -427,18 +499,18 @@
 
         // node dot
         ctx.beginPath();
-        ctx.arc(n.x, n.y, 1.8, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(' + SIGNAL + ', 0.6)';
+        ctx.arc(n.x, n.y, 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + SIGNAL + ', 0.85)';
         ctx.fill();
 
         // links
         for (let j = i + 1; j < nodes.length; j++) {
           const m = nodes[j];
           const d = Math.hypot(n.x - m.x, n.y - m.y);
-          if (d < 120) {
+          if (d < 140) {
             ctx.beginPath();
             ctx.moveTo(n.x, n.y); ctx.lineTo(m.x, m.y);
-            ctx.strokeStyle = 'rgba(' + SIGNAL + ', ' + (0.14 * (1 - d / 120)) + ')';
+            ctx.strokeStyle = 'rgba(' + SIGNAL + ', ' + (0.22 * (1 - d / 140)) + ')';
             ctx.lineWidth = 1;
             ctx.stroke();
           }
@@ -462,6 +534,30 @@
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  // mobile menu toggle (slide-in panel)
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuOverlay = document.getElementById('menuOverlay');
+  if (navToggle && mobileMenu && menuOverlay) {
+    const openMenu = () => {
+      mobileMenu.classList.add('open');
+      menuOverlay.classList.add('open');
+      navToggle.setAttribute('aria-expanded', 'true');
+      navToggle.setAttribute('aria-label', 'Close menu');
+    };
+    const closeMenu = () => {
+      mobileMenu.classList.remove('open');
+      menuOverlay.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open menu');
+    };
+    navToggle.addEventListener('click', () => {
+      mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    menuOverlay.addEventListener('click', closeMenu);
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  }
 
   // scroll reveal
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
