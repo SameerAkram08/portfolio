@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sameer Akram — IT Support Engineer | M365 & Entra ID</title>
+<meta name="description" content="IT Support Engineer specializing in Microsoft 365 and Entra ID administration. 3 years supporting US-based and international teams remotely." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0d1117;
+    --ink-2: #161b22;
+    --panel: #1a2029;
+    --line: #2a313c;
+    --text: #e6edf3;
+    --muted: #8b97a6;
+    --signal: #2dd4bf;
+    --signal-dim: rgba(45, 212, 191, 0.12);
+    --amber: #f0b429;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Sora', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+
+  /* prompt label device */
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    color: var(--signal);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .eyebrow::before { content: "~/"; color: var(--muted); }
+
+  /* HERO */
+  header {
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(900px 400px at 80% -10%, var(--signal-dim), transparent 70%),
+      var(--ink);
+  }
+  .hero { padding: 96px 0 72px; }
+  .hero .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 22px;
+  }
+  .hero .tag .dot { color: var(--signal); }
+  h1 {
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  h1 .accent {
+    background: linear-gradient(120deg, var(--signal), #5eead4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p.lead {
+    font-size: 1.18rem;
+    color: var(--muted);
+    max-width: 640px;
+    margin-bottom: 36px;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; }
+  .btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.86rem;
+    padding: 12px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    display: inline-block;
+  }
+  .btn-primary { background: var(--signal); color: var(--ink); font-weight: 700; }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-ghost { border: 1px solid var(--line); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--signal); color: var(--signal); }
+
+  /* stat strip */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .stat { background: var(--ink); padding: 28px 20px; }
+  .stat .n { font-family: 'JetBrains Mono', monospace; font-size: 1.7rem; font-weight: 700; color: var(--text); }
+  .stat .l { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+  .stat .n .u { color: var(--signal); }
+
+  /* sections */
+  section { padding: 72px 0; border-bottom: 1px solid var(--line); }
+  h2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .section-note { color: var(--muted); margin-bottom: 40px; max-width: 620px; }
+
+  /* capability grid */
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.18s ease, transform 0.18s ease;
+  }
+  .card:hover { border-color: var(--signal); transform: translateY(-3px); }
+  .card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .card h3 .idx { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--signal); }
+  .card p { font-size: 0.93rem; color: var(--muted); }
+
+  /* experience timeline */
+  .role { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 22px 0; border-top: 1px solid var(--line); }
+  .role:first-of-type { border-top: none; }
+  .role .when { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--muted); }
+  .role .what h3 { font-size: 1.08rem; font-weight: 600; margin-bottom: 4px; }
+  .role .what .co { color: var(--signal); font-size: 0.9rem; font-family: 'JetBrains Mono', monospace; margin-bottom: 10px; }
+  .role .what p { font-size: 0.93rem; color: var(--muted); }
+
+  /* proof / links */
+  .proof-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .proof {
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    transition: border-color 0.18s ease, background 0.18s ease;
+  }
+  .proof:hover { border-color: var(--signal); background: var(--panel); }
+  .proof .k { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--signal); }
+  .proof h3 { font-size: 1.02rem; margin: 8px 0 6px; font-weight: 600; }
+  .proof p { font-size: 0.88rem; color: var(--muted); }
+
+  /* skills chips */
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    padding: 8px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--text);
+    background: var(--ink-2);
+  }
+  .chip.key { border-color: var(--signal); color: var(--signal); }
+
+  /* contact */
+  .contact-box {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 40px;
+    text-align: center;
+  }
+  .contact-box h2 { margin-bottom: 12px; }
+  .contact-box p { color: var(--muted); margin-bottom: 26px; }
+  .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
+
+  footer { padding: 36px 0; text-align: center; color: var(--muted); font-size: 0.84rem; }
+  footer .mono { color: var(--muted); }
+
+  @media (max-width: 680px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .grid, .proof-grid { grid-template-columns: 1fr; }
+    .role { grid-template-columns: 1fr; gap: 8px; }
+    .hero { padding: 72px 0 56px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hero">
+    <div class="tag mono"><span class="dot">●</span> available for remote roles — US / UK / international</div>
+    <h1>Sameer Akram<br /><span class="accent">IT Support Engineer</span></h1>
+    <p class="lead">I keep distributed teams running by administering their Microsoft cloud, securing their identities, and resolving issues fast — remotely and reliably.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="https://github.com/SameerAkram08" target="_blank" rel="noopener">View GitHub</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/sameer0811" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="n">3<span class="u">y</span></div><div class="l">IT support experience</div></div>
+      <div class="stat"><div class="n">95<span class="u">%</span></div><div class="l">First-contact resolution</div></div>
+      <div class="stat"><div class="n">~90</div><div class="l">Mailboxes administered</div></div>
+      <div class="stat"><div class="n">8</div><div class="l">Client countries served</div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow mono">capabilities</div>
+    <h2>What I administer</h2>
+    <p class="section-note">Day-to-day I run the Microsoft cloud stack end to end — identity, productivity, servers, and the network that ties them together.</p>
+    <div class="grid">
+      <div class="card">
+        <h3><span class="idx">01</span> Microsoft 365 Administration</h3>
+        <p>Tenant operations, Exchange Online, Teams, OneDrive, SharePoint, licensing, and full user lifecycle management across multi-site environments.</p>
+      </div>
+      <div class="card">
+        <h3><span class="idx">02</span> Entra ID / Azure AD</h3>
+        <p>Identity and access management: MFA, Conditional Access, group management, and PowerShell-based administration for secure sign-in.</p>
+      </div>
+      <div class="card">
+        <h3><span class="idx">03</span> Windows Server &amp; AD</h3>
+        <p>Active Directory user administration, DNS, DHCP, Group Policy, and troubleshooting of domain-joined systems.</p>
+      </div>
+      <div class="card">
+        <h3><span class="idx">04</span> Networking &amp; Support</h3>
+        <p>VPN, Wi-Fi, and TCP/IP troubleshooting with SLA-driven incident management for remote, distributed teams.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow mono">experience</div>
+    <h2>Where I've worked</h2>
+    <p class="section-note">Three years across support and systems roles, including active remote support for US-based and international clients.</p>
+
+    <div class="role">
+      <div class="when mono">Feb 2026 — Present</div>
+      <div class="what">
+        <h3>IT System Support Engineer</h3>
+        <div class="co">MindWhiz</div>
+        <p>Manage a full Microsoft 365 tenant and ~90 mailboxes across multiple locations, administer Entra ID identity and access, and provide remote Procore administration for US-based users in Houston, Texas.</p>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when mono">Feb 2025 — Oct 2025</div>
+      <div class="what">
+        <h3>Technical &amp; IT Support Engineer</h3>
+        <div class="co">Computing Solutions (Retail Pro Authorized BP)</div>
+        <p>Sustained a 95% first-contact resolution rate across 50–60 tickets/week, supporting POS and desktop environments for international clients across the US, UK, and Europe via ConnectWise.</p>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when mono">Aug 2024 — Nov 2024</div>
+      <div class="what">
+        <h3>IT Support Officer</h3>
+        <div class="co">SuperWise International</div>
+        <p>Delivered user and network support, configured proxy and access control, and maintained high system uptime for assigned environments.</p>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when mono">Jun 2022 — Oct 2022</div>
+      <div class="what">
+        <h3>IT Support Officer (Internship)</h3>
+        <div class="co">MEP Solutions</div>
+        <p>Provided on-site and remote support across multiple sites, including network device support and hardware maintenance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow mono">proof</div>
+    <h2>Scripts &amp; documentation</h2>
+    <p class="section-note">Sanitized, working samples of how I automate and document IT environments. No client or confidential data.</p>
+    <div class="proof-grid">
+      <a class="proof" href="https://github.com/SameerAkram08" target="_blank" rel="noopener">
+        <div class="k mono">powershell · graph</div>
+        <h3>Employee Onboarding Automation</h3>
+        <p>Creates an Entra ID user, assigns a license, applies department-based groups, and enforces MFA on first sign-in.</p>
+      </a>
+      <a class="proof" href="https://github.com/SameerAkram08" target="_blank" rel="noopener">
+        <div class="k mono">powershell · security</div>
+        <h3>Secure Offboarding Script</h3>
+        <p>Blocks sign-in, revokes sessions, removes group membership, reclaims licenses, and converts the mailbox to shared.</p>
+      </a>
+      <a class="proof" href="https://github.com/SameerAkram08" target="_blank" rel="noopener">
+        <div class="k mono">powershell · reporting</div>
+        <h3>M365 License Report</h3>
+        <p>Read-only utilization report that flags blocked accounts still holding licenses to cut wasted spend.</p>
+      </a>
+      <a class="proof" href="https://github.com/SameerAkram08" target="_blank" rel="noopener">
+        <div class="k mono">runbook · sop</div>
+        <h3>MFA &amp; VPN Runbooks</h3>
+        <p>Step-by-step procedures for Conditional Access rollout and structured VPN troubleshooting with escalation criteria.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow mono">stack</div>
+    <h2>Tools &amp; technologies</h2>
+    <p class="section-note">Highlighted chips are my core specialties.</p>
+    <div class="chips">
+      <span class="chip key">Microsoft 365</span>
+      <span class="chip key">Entra ID (Azure AD)</span>
+      <span class="chip key">Active Directory</span>
+      <span class="chip key">Windows Server</span>
+      <span class="chip key">PowerShell</span>
+      <span class="chip">Exchange Online</span>
+      <span class="chip">Conditional Access</span>
+      <span class="chip">MFA</span>
+      <span class="chip">DNS</span>
+      <span class="chip">DHCP</span>
+      <span class="chip">VPN</span>
+      <span class="chip">TCP/IP</span>
+      <span class="chip">ConnectWise</span>
+      <span class="chip">SharePoint</span>
+      <span class="chip">Intune-ready</span>
+      <span class="chip">macOS &amp; Windows</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="border-bottom: none;">
+  <div class="wrap">
+    <div class="contact-box">
+      <div class="eyebrow mono" style="justify-content:center;">contact</div>
+      <h2>Let's talk</h2>
+      <p>Open to remote IT support, systems administration, and M365 administrator roles with US, UK, and international teams.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:sameerakramwork44@gmail.com">sameerakramwork44@gmail.com</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/sameer0811" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/SameerAkram08" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">© 2026 Sameer Akram · IT Support Engineer · Lahore, Pakistan</span>
+  </div>
+</footer>
+
+</body>
+</html>
