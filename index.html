@@ -3,11 +3,41 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sameer Akram — IT Support Engineer | M365 & Entra ID</title>
-<meta name="description" content="IT Support Engineer specializing in Microsoft 365 and Entra ID administration. 3 years supporting US-based and international teams remotely." />
+<title>Sameer Akram — IT Support Engineer | Microsoft 365 &amp; Entra ID Administration</title>
+<meta name="description" content="IT Support Engineer specializing in Microsoft 365 and Entra ID (Azure AD) administration. 3 years supporting US-based and international teams remotely, with a 95% first-contact resolution rate." />
+<meta name="author" content="Sameer Akram" />
+<link rel="canonical" href="https://sameerakram08.github.io/portfolio/" />
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Sameer Akram — IT Support Engineer | M365 &amp; Entra ID" />
+<meta property="og:description" content="I keep distributed teams running by administering their Microsoft cloud, securing identities, and resolving issues fast. Open to remote roles, US/UK/international." />
+<meta property="og:url" content="https://sameerakram08.github.io/portfolio/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Sameer Akram — IT Support Engineer | M365 &amp; Entra ID" />
+<meta name="twitter:description" content="IT Support Engineer specializing in Microsoft 365 and Entra ID administration. Open to remote roles." />
+
+<!-- Structured data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sameer Akram",
+  "jobTitle": "IT Support Engineer",
+  "description": "IT Support Engineer specializing in Microsoft 365 and Entra ID administration.",
+  "email": "sameerakramwork44@gmail.com",
+  "url": "https://sameerakram08.github.io/portfolio/",
+  "sameAs": [
+    "https://www.linkedin.com/in/sameer0811",
+    "https://github.com/SameerAkram08"
+  ],
+  "knowsAbout": ["Microsoft 365", "Entra ID", "Active Directory", "Windows Server", "PowerShell", "Networking"]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
   :root {
     --ink: #0d1117;
@@ -18,126 +48,157 @@
     --muted: #8b97a6;
     --signal: #2dd4bf;
     --signal-dim: rgba(45, 212, 191, 0.12);
-    --amber: #f0b429;
+    --maxw: 960px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
   body {
     background: var(--ink);
     color: var(--text);
     font-family: 'Sora', sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
   .mono { font-family: 'JetBrains Mono', monospace; }
-  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+  a { color: inherit; }
 
-  /* prompt label device */
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13, 17, 23, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+  nav.scrolled { border-bottom-color: var(--line); }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 16px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.95rem; letter-spacing: -0.01em; }
+  .brand .sig { color: var(--signal); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    font-size: 0.9rem; color: var(--muted); text-decoration: none;
+    transition: color 0.15s ease; position: relative;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible { color: var(--text); }
+  .nav-links a.nav-cta {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
+    color: var(--signal); border: 1px solid var(--signal);
+    padding: 8px 16px; border-radius: 7px;
+  }
+  .nav-links a.nav-cta:hover { background: var(--signal); color: var(--ink); }
+  .nav-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 6px; }
+  @media (max-width: 680px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+  }
+
+  /* ---------- reveal animation ---------- */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
   .eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
-    letter-spacing: 0.05em;
-    color: var(--signal);
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+    letter-spacing: 0.05em; color: var(--signal); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
   }
   .eyebrow::before { content: "~/"; color: var(--muted); }
+  .eyebrow.center { justify-content: center; }
 
-  /* HERO */
+  /* ---------- HERO ---------- */
   header {
-    border-bottom: 1px solid var(--line);
+    position: relative;
     background:
-      radial-gradient(900px 400px at 80% -10%, var(--signal-dim), transparent 70%),
+      radial-gradient(900px 420px at 78% -10%, var(--signal-dim), transparent 70%),
       var(--ink);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
   }
-  .hero { padding: 96px 0 72px; }
+  #net-bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+  .hero, header .wrap { position: relative; z-index: 1; }
+  .hero { padding: 92px 0 76px; }
   .hero .tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.82rem;
-    color: var(--muted);
-    margin-bottom: 22px;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
+    color: var(--muted); margin-bottom: 22px;
+    opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
   }
   .hero .tag .dot { color: var(--signal); }
   h1 {
-    font-size: clamp(2.2rem, 6vw, 3.6rem);
-    font-weight: 700;
-    line-height: 1.04;
-    letter-spacing: -0.02em;
-    margin-bottom: 20px;
+    font-size: clamp(2.3rem, 6.5vw, 3.8rem); font-weight: 800;
+    line-height: 1.03; letter-spacing: -0.025em; margin-bottom: 20px;
+    opacity: 0; animation: fadeUp 0.6s ease 0.22s forwards;
   }
   h1 .accent {
     background: linear-gradient(120deg, var(--signal), #5eead4);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .hero p.lead {
-    font-size: 1.18rem;
-    color: var(--muted);
-    max-width: 640px;
-    margin-bottom: 36px;
+    font-size: 1.2rem; color: var(--muted); max-width: 620px; margin-bottom: 18px;
+    opacity: 0; animation: fadeUp 0.6s ease 0.34s forwards;
   }
-  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; }
+  .hero p.sub {
+    font-size: 0.98rem; color: var(--text); max-width: 600px; margin-bottom: 36px;
+    opacity: 0; animation: fadeUp 0.6s ease 0.42s forwards;
+  }
+  .hero p.sub strong { color: var(--signal); font-weight: 600; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; opacity: 0; animation: fadeUp 0.6s ease 0.52s forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: none; } from { opacity: 0; transform: translateY(20px); } }
+
   .btn {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.86rem;
-    padding: 12px 22px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.86rem;
+    padding: 13px 24px; border-radius: 8px; text-decoration: none;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
     display: inline-block;
   }
   .btn-primary { background: var(--signal); color: var(--ink); font-weight: 700; }
-  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-primary:hover, .btn-primary:focus-visible { transform: translateY(-2px); }
   .btn-ghost { border: 1px solid var(--line); color: var(--text); }
-  .btn-ghost:hover { border-color: var(--signal); color: var(--signal); }
+  .btn-ghost:hover, .btn-ghost:focus-visible { border-color: var(--signal); color: var(--signal); }
+  .btn-wa { background: #25D366; color: #04231a; font-weight: 700; }
+  .btn-wa:hover, .btn-wa:focus-visible { transform: translateY(-2px); }
 
-  /* stat strip */
+  /* floating WhatsApp button */
+  .wa-float {
+    position: fixed; right: 22px; bottom: 22px; z-index: 200;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25D366; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .wa-float:hover, .wa-float:focus-visible { transform: scale(1.08); box-shadow: 0 10px 30px rgba(37, 211, 102, 0.55); }
+  @media (max-width: 680px) { .wa-float { width: 52px; height: 52px; right: 16px; bottom: 16px; } }
+
+  /* ---------- stats ---------- */
   .stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--line);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--line); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
   }
   .stat { background: var(--ink); padding: 28px 20px; }
-  .stat .n { font-family: 'JetBrains Mono', monospace; font-size: 1.7rem; font-weight: 700; color: var(--text); }
-  .stat .l { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+  .stat .n { font-family: 'JetBrains Mono', monospace; font-size: 1.7rem; font-weight: 700; }
   .stat .n .u { color: var(--signal); }
+  .stat .l { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
 
-  /* sections */
-  section { padding: 72px 0; border-bottom: 1px solid var(--line); }
-  h2 {
-    font-size: 1.7rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    margin-bottom: 8px;
-  }
+  /* ---------- sections ---------- */
+  section { padding: 76px 0; border-bottom: 1px solid var(--line); }
+  h2 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 8px; }
   .section-note { color: var(--muted); margin-bottom: 40px; max-width: 620px; }
 
-  /* capability grid */
   .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 24px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 24px;
     transition: border-color 0.18s ease, transform 0.18s ease;
   }
   .card:hover { border-color: var(--signal); transform: translateY(-3px); }
-  .card h3 {
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    display: flex; align-items: center; gap: 10px;
-  }
+  .card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
   .card h3 .idx { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--signal); }
   .card p { font-size: 0.93rem; color: var(--muted); }
 
-  /* experience timeline */
   .role { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 22px 0; border-top: 1px solid var(--line); }
   .role:first-of-type { border-top: none; }
   .role .when { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--muted); }
@@ -145,69 +206,76 @@
   .role .what .co { color: var(--signal); font-size: 0.9rem; font-family: 'JetBrains Mono', monospace; margin-bottom: 10px; }
   .role .what p { font-size: 0.93rem; color: var(--muted); }
 
-  /* proof / links */
   .proof-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .proof {
-    background: var(--ink-2);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 22px;
-    text-decoration: none;
-    color: var(--text);
-    display: block;
-    transition: border-color 0.18s ease, background 0.18s ease;
+    background: var(--ink-2); border: 1px solid var(--line); border-radius: 12px; padding: 22px;
+    text-decoration: none; color: var(--text); display: block;
+    transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
   }
-  .proof:hover { border-color: var(--signal); background: var(--panel); }
+  .proof:hover { border-color: var(--signal); background: var(--panel); transform: translateY(-3px); }
   .proof .k { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--signal); }
   .proof h3 { font-size: 1.02rem; margin: 8px 0 6px; font-weight: 600; }
   .proof p { font-size: 0.88rem; color: var(--muted); }
+  .proof .arrow { font-family: 'JetBrains Mono', monospace; color: var(--muted); font-size: 0.8rem; margin-top: 12px; display: inline-block; transition: transform 0.18s ease, color 0.18s ease; }
+  .proof:hover .arrow { color: var(--signal); transform: translateX(4px); }
 
-  /* skills chips */
   .chips { display: flex; flex-wrap: wrap; gap: 10px; }
   .chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    padding: 8px 14px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    color: var(--text);
-    background: var(--ink-2);
+    font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; padding: 8px 14px;
+    border: 1px solid var(--line); border-radius: 999px; color: var(--text); background: var(--ink-2);
   }
   .chip.key { border-color: var(--signal); color: var(--signal); }
 
-  /* contact */
-  .contact-box {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 40px;
-    text-align: center;
-  }
+  .contact-box { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 44px; text-align: center; }
   .contact-box h2 { margin-bottom: 12px; }
-  .contact-box p { color: var(--muted); margin-bottom: 26px; }
+  .contact-box p { color: var(--muted); margin-bottom: 26px; max-width: 480px; margin-left: auto; margin-right: auto; }
   .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
 
-  footer { padding: 36px 0; text-align: center; color: var(--muted); font-size: 0.84rem; }
-  footer .mono { color: var(--muted); }
+  footer { padding: 40px 0; text-align: center; color: var(--muted); font-size: 0.84rem; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--signal); }
+
+  :focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; border-radius: 4px; }
 
   @media (max-width: 680px) {
     .stats { grid-template-columns: repeat(2, 1fr); }
     .grid, .proof-grid { grid-template-columns: 1fr; }
     .role { grid-template-columns: 1fr; gap: 8px; }
-    .hero { padding: 72px 0 56px; }
+    .hero { padding: 64px 0 52px; }
+    .contact-box { padding: 32px 20px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    .reveal { opacity: 1; transform: none; }
+    .hero .tag, h1, .hero p.lead, .hero p.sub, .cta-row { opacity: 1; animation: none; }
   }
 </style>
 </head>
 <body>
 
-<header>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">sameer<span class="sig">.akram</span></a>
+    <div class="nav-links">
+      <a href="#capabilities">Capabilities</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+    <button class="nav-toggle" aria-label="Jump to contact" onclick="document.getElementById('contact').scrollIntoView()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header id="top">
+  <canvas id="net-bg" aria-hidden="true"></canvas>
   <div class="wrap hero">
-    <div class="tag mono"><span class="dot">●</span> available for remote roles — US / UK / international</div>
+    <div class="tag mono"><span class="dot">●</span> available for remote roles, US / UK / international</div>
     <h1>Sameer Akram<br /><span class="accent">IT Support Engineer</span></h1>
-    <p class="lead">I keep distributed teams running by administering their Microsoft cloud, securing their identities, and resolving issues fast — remotely and reliably.</p>
+    <p class="lead">I keep distributed teams running by administering their Microsoft cloud, securing their identities, and resolving issues fast and reliably.</p>
+    <p class="sub">Specialist in <strong>Microsoft 365</strong> and <strong>Entra ID</strong> administration, with 3 years supporting US-based and international teams remotely.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#contact">Get in touch</a>
       <a class="btn btn-ghost" href="https://github.com/SameerAkram08" target="_blank" rel="noopener">View GitHub</a>
@@ -216,118 +284,58 @@
   </div>
   <div class="wrap">
     <div class="stats">
-      <div class="stat"><div class="n">3<span class="u">y</span></div><div class="l">IT support experience</div></div>
-      <div class="stat"><div class="n">95<span class="u">%</span></div><div class="l">First-contact resolution</div></div>
-      <div class="stat"><div class="n">~90</div><div class="l">Mailboxes administered</div></div>
-      <div class="stat"><div class="n">8</div><div class="l">Client countries served</div></div>
+      <div class="stat"><div class="n mono">3<span class="u">y</span></div><div class="l">IT support experience</div></div>
+      <div class="stat"><div class="n mono">95<span class="u">%</span></div><div class="l">First-contact resolution</div></div>
+      <div class="stat"><div class="n mono">100<span class="u">+</span></div><div class="l">Mailboxes administered</div></div>
+      <div class="stat"><div class="n mono">USA<span class="u"> +8</span></div><div class="l">Countries served</div></div>
     </div>
   </div>
 </header>
 
 <main>
 
-<section>
-  <div class="wrap">
+<section id="capabilities">
+  <div class="wrap reveal">
     <div class="eyebrow mono">capabilities</div>
     <h2>What I administer</h2>
-    <p class="section-note">Day-to-day I run the Microsoft cloud stack end to end — identity, productivity, servers, and the network that ties them together.</p>
+    <p class="section-note">I run the Microsoft cloud stack end to end: identity, productivity, servers, and the network that ties them together.</p>
     <div class="grid">
-      <div class="card">
-        <h3><span class="idx">01</span> Microsoft 365 Administration</h3>
-        <p>Tenant operations, Exchange Online, Teams, OneDrive, SharePoint, licensing, and full user lifecycle management across multi-site environments.</p>
-      </div>
-      <div class="card">
-        <h3><span class="idx">02</span> Entra ID / Azure AD</h3>
-        <p>Identity and access management: MFA, Conditional Access, group management, and PowerShell-based administration for secure sign-in.</p>
-      </div>
-      <div class="card">
-        <h3><span class="idx">03</span> Windows Server &amp; AD</h3>
-        <p>Active Directory user administration, DNS, DHCP, Group Policy, and troubleshooting of domain-joined systems.</p>
-      </div>
-      <div class="card">
-        <h3><span class="idx">04</span> Networking &amp; Support</h3>
-        <p>VPN, Wi-Fi, and TCP/IP troubleshooting with SLA-driven incident management for remote, distributed teams.</p>
-      </div>
+      <div class="card"><h3><span class="idx">01</span> Microsoft 365 Administration</h3><p>Tenant operations, Exchange Online, Teams, OneDrive, SharePoint, licensing, and full user lifecycle management across multi-site environments.</p></div>
+      <div class="card"><h3><span class="idx">02</span> Entra ID / Azure AD</h3><p>Identity and access management: MFA, Conditional Access, group management, and PowerShell-based administration for secure sign-in.</p></div>
+      <div class="card"><h3><span class="idx">03</span> Windows Server &amp; AD</h3><p>Active Directory user administration, DNS, DHCP, Group Policy, and troubleshooting of domain-joined systems.</p></div>
+      <div class="card"><h3><span class="idx">04</span> Networking &amp; Support</h3><p>VPN, Wi-Fi, and TCP/IP troubleshooting with SLA-driven incident management for remote, distributed teams.</p></div>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="wrap">
+<section id="experience">
+  <div class="wrap reveal">
     <div class="eyebrow mono">experience</div>
     <h2>Where I've worked</h2>
     <p class="section-note">Three years across support and systems roles, including active remote support for US-based and international clients.</p>
-
-    <div class="role">
-      <div class="when mono">Feb 2026 — Present</div>
-      <div class="what">
-        <h3>IT System Support Engineer</h3>
-        <div class="co">MindWhiz</div>
-        <p>Manage a full Microsoft 365 tenant and ~90 mailboxes across multiple locations, administer Entra ID identity and access, and provide remote Procore administration for US-based users in Houston, Texas.</p>
-      </div>
-    </div>
-
-    <div class="role">
-      <div class="when mono">Feb 2025 — Oct 2025</div>
-      <div class="what">
-        <h3>Technical &amp; IT Support Engineer</h3>
-        <div class="co">Computing Solutions (Retail Pro Authorized BP)</div>
-        <p>Sustained a 95% first-contact resolution rate across 50–60 tickets/week, supporting POS and desktop environments for international clients across the US, UK, and Europe via ConnectWise.</p>
-      </div>
-    </div>
-
-    <div class="role">
-      <div class="when mono">Aug 2024 — Nov 2024</div>
-      <div class="what">
-        <h3>IT Support Officer</h3>
-        <div class="co">SuperWise International</div>
-        <p>Delivered user and network support, configured proxy and access control, and maintained high system uptime for assigned environments.</p>
-      </div>
-    </div>
-
-    <div class="role">
-      <div class="when mono">Jun 2022 — Oct 2022</div>
-      <div class="what">
-        <h3>IT Support Officer (Internship)</h3>
-        <div class="co">MEP Solutions</div>
-        <p>Provided on-site and remote support across multiple sites, including network device support and hardware maintenance.</p>
-      </div>
-    </div>
+    <div class="role"><div class="when mono">Feb 2026 — Present</div><div class="what"><h3>IT System Support Engineer</h3><div class="co">MindWhiz</div><p>Manage a full Microsoft 365 tenant and 100+ mailboxes across Microsoft 365, Zoho, and Apollo platforms over multiple locations, administer Entra ID identity and access, and provide remote Procore administration for US-based users in Houston, Texas.</p></div></div>
+    <div class="role"><div class="when mono">Feb 2025 — Oct 2025</div><div class="what"><h3>Technical &amp; IT Support Engineer</h3><div class="co">Computing Solutions (Retail Pro Authorized BP)</div><p>Sustained a 95% first-contact resolution rate across 50 to 60 tickets per week, supporting POS and desktop environments for international clients across the US, UK, and Europe via ConnectWise.</p></div></div>
+    <div class="role"><div class="when mono">Aug 2024 — Nov 2024</div><div class="what"><h3>IT Support Officer</h3><div class="co">SuperWise International</div><p>Delivered user and network support, configured proxy and access control, and maintained high system uptime for assigned environments.</p></div></div>
+    <div class="role"><div class="when mono">Jun 2022 — Oct 2022</div><div class="what"><h3>IT Support Officer (Internship)</h3><div class="co">MEP Solutions</div><p>Provided on-site and remote support across multiple sites, including network device support and hardware maintenance.</p></div></div>
   </div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="eyebrow mono">proof</div>
+<section id="work">
+  <div class="wrap reveal">
+    <div class="eyebrow mono">work</div>
     <h2>Scripts &amp; documentation</h2>
     <p class="section-note">Sanitized, working samples of how I automate and document IT environments. No client or confidential data.</p>
     <div class="proof-grid">
-      <a class="proof" href="https://github.com/SameerAkram08" target="_blank" rel="noopener">
-        <div class="k mono">powershell · graph</div>
-        <h3>Employee Onboarding Automation</h3>
-        <p>Creates an Entra ID user, assigns a license, applies department-based groups, and enforces MFA on first sign-in.</p>
-      </a>
-      <a class="proof" href="https://github.com/SameerAkram08" target="_blank" rel="noopener">
-        <div class="k mono">powershell · security</div>
-        <h3>Secure Offboarding Script</h3>
-        <p>Blocks sign-in, revokes sessions, removes group membership, reclaims licenses, and converts the mailbox to shared.</p>
-      </a>
-      <a class="proof" href="https://github.com/SameerAkram08" target="_blank" rel="noopener">
-        <div class="k mono">powershell · reporting</div>
-        <h3>M365 License Report</h3>
-        <p>Read-only utilization report that flags blocked accounts still holding licenses to cut wasted spend.</p>
-      </a>
-      <a class="proof" href="https://github.com/SameerAkram08" target="_blank" rel="noopener">
-        <div class="k mono">runbook · sop</div>
-        <h3>MFA &amp; VPN Runbooks</h3>
-        <p>Step-by-step procedures for Conditional Access rollout and structured VPN troubleshooting with escalation criteria.</p>
-      </a>
+      <a class="proof" href="https://github.com/SameerAkram08/it-admin-toolkit" target="_blank" rel="noopener"><div class="k mono">powershell · graph</div><h3>Employee Onboarding Automation</h3><p>Creates an Entra ID user, assigns a license, applies department-based groups, and enforces MFA on first sign-in.</p><span class="arrow">view on github →</span></a>
+      <a class="proof" href="https://github.com/SameerAkram08/it-admin-toolkit" target="_blank" rel="noopener"><div class="k mono">powershell · security</div><h3>Secure Offboarding Script</h3><p>Blocks sign-in, revokes sessions, removes group membership, reclaims licenses, and converts the mailbox to shared.</p><span class="arrow">view on github →</span></a>
+      <a class="proof" href="https://github.com/SameerAkram08/it-admin-toolkit" target="_blank" rel="noopener"><div class="k mono">powershell · reporting</div><h3>M365 License Report</h3><p>Read-only utilization report that flags blocked accounts still holding licenses to cut wasted spend.</p><span class="arrow">view on github →</span></a>
+      <a class="proof" href="https://github.com/SameerAkram08/it-admin-toolkit" target="_blank" rel="noopener"><div class="k mono">runbook · sop</div><h3>MFA &amp; VPN Runbooks</h3><p>Step-by-step procedures for Conditional Access rollout and structured VPN troubleshooting with escalation criteria.</p><span class="arrow">view on github →</span></a>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="wrap">
+<section id="stack">
+  <div class="wrap reveal">
     <div class="eyebrow mono">stack</div>
     <h2>Tools &amp; technologies</h2>
     <p class="section-note">Highlighted chips are my core specialties.</p>
@@ -346,20 +354,21 @@
       <span class="chip">TCP/IP</span>
       <span class="chip">ConnectWise</span>
       <span class="chip">SharePoint</span>
-      <span class="chip">Intune-ready</span>
       <span class="chip">macOS &amp; Windows</span>
     </div>
   </div>
 </section>
 
 <section id="contact" style="border-bottom: none;">
-  <div class="wrap">
+  <div class="wrap reveal">
     <div class="contact-box">
-      <div class="eyebrow mono" style="justify-content:center;">contact</div>
+      <div class="eyebrow mono center">contact</div>
       <h2>Let's talk</h2>
-      <p>Open to remote IT support, systems administration, and M365 administrator roles with US, UK, and international teams.</p>
+      <p>Open to remote IT support, systems administration, and Microsoft 365 administrator roles with US, UK, and international teams.</p>
       <div class="contact-links">
         <a class="btn btn-primary" href="mailto:sameerakramwork44@gmail.com">sameerakramwork44@gmail.com</a>
+        <a class="btn btn-wa" href="https://wa.me/923136856881" target="_blank" rel="noopener" aria-label="Message on WhatsApp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:6px;"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.48-.5-.67-.5-.17 0-.37-.03-.57-.03s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.07 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.4 9.4 0 01-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.38 9.38 0 01-1.44-5.01c0-5.18 4.22-9.4 9.41-9.4 2.51 0 4.87.98 6.64 2.76a9.34 9.34 0 012.75 6.65c-.01 5.18-4.22 9.4-9.41 9.4zm8-17.4A11.32 11.32 0 0012.04.75C5.8.75.73 5.82.73 12.06c0 1.99.52 3.94 1.51 5.66L.63 23.25l5.67-1.49a11.31 11.31 0 005.74 1.46h.01c6.23 0 11.3-5.07 11.31-11.31a11.25 11.25 0 00-3.31-7.8z"/></svg>WhatsApp</a>
         <a class="btn btn-ghost" href="https://www.linkedin.com/in/sameer0811" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn btn-ghost" href="https://github.com/SameerAkram08" target="_blank" rel="noopener">GitHub</a>
       </div>
@@ -369,11 +378,102 @@
 
 </main>
 
+<a class="wa-float" href="https://wa.me/923136856881" target="_blank" rel="noopener" aria-label="Message Sameer on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.48-.5-.67-.5-.17 0-.37-.03-.57-.03s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.07 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.4 9.4 0 01-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.38 9.38 0 01-1.44-5.01c0-5.18 4.22-9.4 9.41-9.4 2.51 0 4.87.98 6.64 2.76a9.34 9.34 0 012.75 6.65c-.01 5.18-4.22 9.4-9.41 9.4zm8-17.4A11.32 11.32 0 0012.04.75C5.8.75.73 5.82.73 12.06c0 1.99.52 3.94 1.51 5.66L.63 23.25l5.67-1.49a11.31 11.31 0 005.74 1.46h.01c6.23 0 11.3-5.07 11.31-11.31a11.25 11.25 0 00-3.31-7.8z"/></svg>
+</a>
+
 <footer>
   <div class="wrap">
     <span class="mono">© 2026 Sameer Akram · IT Support Engineer · Lahore, Pakistan</span>
   </div>
 </footer>
+
+<script>
+  // ---- network background (nodes + connecting lines, reacts to cursor) ----
+  (function () {
+    const reduceMo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const canvas = document.getElementById('net-bg');
+    if (!canvas || reduceMo) return;
+    const ctx = canvas.getContext('2d');
+    let w, h, nodes = [], mouse = { x: -9999, y: -9999 };
+    const SIGNAL = '45, 212, 191';
+
+    function size() {
+      const header = canvas.parentElement;
+      w = canvas.width = header.offsetWidth;
+      h = canvas.height = header.offsetHeight;
+      const count = Math.min(60, Math.floor(w / 22));
+      nodes = [];
+      for (let i = 0; i < count; i++) {
+        nodes.push({
+          x: Math.random() * w, y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i];
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > w) n.vx *= -1;
+        if (n.y < 0 || n.y > h) n.vy *= -1;
+
+        // cursor gentle attraction
+        const dxm = mouse.x - n.x, dym = mouse.y - n.y;
+        const dm = Math.hypot(dxm, dym);
+        if (dm < 130) { n.x += dxm * 0.012; n.y += dym * 0.012; }
+
+        // node dot
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 1.8, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + SIGNAL + ', 0.6)';
+        ctx.fill();
+
+        // links
+        for (let j = i + 1; j < nodes.length; j++) {
+          const m = nodes[j];
+          const d = Math.hypot(n.x - m.x, n.y - m.y);
+          if (d < 120) {
+            ctx.beginPath();
+            ctx.moveTo(n.x, n.y); ctx.lineTo(m.x, m.y);
+            ctx.strokeStyle = 'rgba(' + SIGNAL + ', ' + (0.14 * (1 - d / 120)) + ')';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', size, { passive: true });
+    const header = canvas.parentElement;
+    header.addEventListener('mousemove', e => {
+      const r = header.getBoundingClientRect();
+      mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+    });
+    header.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+    size(); draw();
+  })();
+
+  // nav border on scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // scroll reveal
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+</script>
 
 </body>
 </html>
